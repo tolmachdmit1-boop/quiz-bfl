@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Федеральная программа списания долгов — Проверить условия по ФЗ №127</title>
+    <style>
+        :root {
+            --primary-color: #007bff;
+            --success-color: #28a745;
+            --dark-color: #212529;
+            --light-color: #f8f9fa;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Arial, sans-serif; }
+        body { background-color: #f1f3f5; color: var(--dark-color); display: flex; flex-direction: column; min-height: 100vh; justify-content: space-between; }
+        
+        .wrapper { flex: 1; display: flex; justify-content: center; align-items: center; padding: 20px; }
+        
+        .quiz-container { background: #fff; width: 100%; max-width: 550px; padding: 30px; border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.08); }
+        
+        .header { text-align: center; margin-bottom: 20px; }
+        .header h1 { font-size: 20px; color: var(--dark-color); margin-bottom: 8px; line-height: 1.4; font-weight: 700; }
+        .header p { font-size: 14px; color: #6c757d; }
+        
+        .progress-bar { height: 6px; background-color: #dee2e6; border-radius: 3px; margin-bottom: 25px; overflow: hidden; }
+        .progress-fill { height: 100%; background-color: var(--primary-color); width: 25%; transition: width 0.3s; }
+        
+        .step { display: none; }
+        .step.active { display: block; }
+        .step h2 { font-size: 17px; margin-bottom: 20px; font-weight: 600; line-height: 1.4; }
+        
+        .option-btn { display: block; width: 100%; padding: 16px; margin-bottom: 12px; background: var(--light-color); border: 1px solid #ced4da; border-radius: 10px; text-align: left; font-size: 15px; cursor: pointer; transition: all 0.2s; font-weight: 500; }
+        .option-btn:hover { border-color: var(--primary-color); background: #f0f7ff; }
+        
+        .final-screen { text-align: center; display: none; }
+        .final-screen.active { display: block; }
+        .final-screen h2 { color: var(--success-color); font-size: 22px; margin-bottom: 15px; font-weight: 700; }
+        .final-screen p { font-size: 15px; margin-bottom: 25px; line-height: 1.6; color: #495057; }
+        
+        .tg-link-btn { display: inline-block; padding: 16px 32px; background-color: #24A1DE; color: #fff; text-decoration: none; border-radius: 50px; font-size: 16px; font-weight: bold; box-shadow: 0 5px 15px rgba(36,161,222,0.35); transition: all 0.2s; }
+        .tg-link-btn:hover { transform: translateY(-2px); box-shadow: 0 7px 20px rgba(36,161,222,0.5); }
+        
+        footer { background: #fff; padding: 20px; border-top: 1px solid #dee2e6; text-align: center; font-size: 11px; color: #868e96; line-height: 1.6; }
+        footer .docs { margin-bottom: 8px; }
+        footer .docs a { color: var(--primary-color); text-decoration: none; margin: 0 10px; }
+    </style>
+</head>
+<body>
+
+<div class="wrapper">
+    <div class="quiz-container">
+        <div class="header" id="quiz-header">
+            <h1>Законное списание долгов и кредитов (ФЗ №127)</h1>
+            <p>Пройдите экспресс-тест и проверьте, подходит ли ваш случай</p>
+        </div>
+
+        <div class="progress-bar" id="progress-container">
+            <div class="progress-fill" id="progress"></div>
+        </div>
+
+        <div class="step active" id="step1">
+            <h2>Вопрос 1 из 3: Какая у вас общая сумма задолженности?</h2>
+            <button class="option-btn" onclick="nextStep(1, 60)">До 300 000 руб.</button>
+            <button class="option-btn" onclick="nextStep(1, 60)">300 000 — 500 000 руб.</button>
+            <button class="option-btn" onclick="nextStep(1, 60)">Более 500 000 руб.</button>
+        </div>
+
+        <div class="step" id="step2">
+            <h2>Вопрос 2 из 3: Есть ли у вас открытые просрочки по платежам?</h2>
+            <button class="option-btn" onclick="nextStep(2, 90)">Да, уже есть просрочки</button>
+            <button class="option-btn" onclick="nextStep(2, 90)">Вот-вот начнутся (сложно платить)</button>
+            <button class="option-btn" onclick="nextStep(2, 90)">Нет, плачу вовремя</button>
+        </div>
+
+        <div class="step" id="step3">
+            <h2>Вопрос 3 из 3: Какое имущество находится у вас в собственности?</h2>
+            <button class="option-btn" onclick="finishQuiz()">Только единственное жилье (защищено законом)</button>
+            <button class="option-btn" onclick="finishQuiz()">Есть машина / дача / вторая квартира</button>
+            <button class="option-btn" onclick="finishQuiz()">Официального имущества нет</button>
+        </div>
+
+        <div class="final-screen" id="final">
+            <h2>Анализ завершен! 🎉</h2>
+            <p>Ваш случай на <b>92% подходит</b> под условия Федеральной программы.<br><br>Мы сохранили ваши ответы. Чтобы зафиксировать за собой право на <b>бесплатную консультацию юриста</b>, подтвердите отправку анкеты через Telegram:</p>
+            
+            <a href="https://t.me/anti_dolg_quiz_bot?start=quiz_landing" class="tg-link-btn">
+                ✅ Подтвердить и получить результат
+            </a>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <div class="docs">
+        <a href="#" onclick="alert('Ваши персональные данные защищены и обрабатываются исключительно для связи юриста.')">Политика конфиденциальности</a> | 
+        <a href="#" onclick="alert('Процедура списания долгов регламентируется Федеральным законом №127-ФЗ «О несостоятельности (банкротстве)».')">Правовая информация</a>
+    </div>
+    <p>Информация на сайте носит справочный характер и не является публичной офертой.</p>
+    <p>© 2026 Юридическая помощь гражданам. Программа финансового оздоровления.</p>
+</footer>
+
+<script>
+    function nextStep(currentStep, nextProgress) {
+        document.getElementById(`step${currentStep}`).classList.remove('active');
+        document.getElementById(`step${currentStep + 1}`).classList.add('active');
+        document.getElementById('progress').style.width = `${nextProgress}%`;
+    }
+
+    function finishQuiz() {
+        document.getElementById('step3').classList.remove('active');
+        document.getElementById('progress-container').style.display = 'none';
+        document.getElementById('quiz-header').style.display = 'none';
+        document.getElementById('final').classList.add('active');
+    }
+</script>
+
+</body>
+</html>
