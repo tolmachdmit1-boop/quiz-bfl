@@ -749,13 +749,47 @@ function closeModal(){
   },400);
 }
 document.getElementById('modal').addEventListener('click',e=>{ if(e.target===e.currentTarget) closeModal(); });
-function submitForm(){
-  const btn=document.getElementById('btn-send');
-  btn.textContent='Отправляем...'; btn.disabled=true;
-  setTimeout(()=>{
-    document.getElementById('modal-form').style.display='none';
-    document.getElementById('modal-success').style.display='block';
-  },1200);
+async function submitForm() {
+  const btn = document.getElementById('btn-send');
+  
+  // Собираем данные из полей
+  const name = document.querySelector('input[placeholder="Иван Иванов"]').value.trim();
+  const phone = document.querySelector('input[placeholder="+7 (___) ___-__-__"]').value.trim();
+  const debt = document.querySelector('input[placeholder="например, 500 000 ₽"]').value.trim();
+  const comment = document.querySelector('textarea').value.trim();
+
+  if (!phone) {
+    alert('Пожалуйста, укажите номер телефона чтобы мы могли связаться с вами.');
+    return;
+  }
+
+  btn.textContent = 'Отправляем...';
+  btn.disabled = true;
+
+  try {
+    // ВСТАВЬ СЮДА IP-АДРЕС СВОЕГО VPS И ПОРТ (например, http://192.168.1.1:8080/api/lead)
+    const response = await fetch('http://89.37.192.2:24865/api/lead', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ name, phone, debt, comment })
+    });
+
+    if (response.ok) {
+      document.getElementById('modal-form').style.display = 'none';
+      document.getElementById('modal-success').style.display = 'block';
+    } else {
+      alert('Произошла ошибка при отправке. Пожалуйста, попробуйте еще раз.');
+      btn.textContent = 'Отправить заявку';
+      btn.disabled = false;
+    }
+  } catch (error) {
+    console.error('Error:', error);
+    alert('Не удалось связаться с сервером. Проверьте подключение.');
+    btn.textContent = 'Отправить заявку';
+    btn.disabled = false;
+  }
 }
 
 // FAQ
