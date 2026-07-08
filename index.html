@@ -4,10 +4,10 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <meta name="theme-color" content="#0f1117"/>
-<meta name="description" content="Юридический中心 по списанию долгов и банкротству физических лиц. Бесплатная консультация. Гарантия результата."/>
-<title>Долговой Центр — Банкротство физических лиц</title>
+<meta name="description" content="Юридический центр по списанию долгов и банкротству физических лиц. Бесплатная консультация. Гарантия результата."/>
+<title>Долговой Центр — Списание долгов и банкротство</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin"/>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -315,6 +315,13 @@ nav{
   color:rgba(200,169,110,0.04);letter-spacing:-0.05em;
   pointer-events:none;white-space:nowrap;line-height:1;
 }
+.cta-left{}
+.cta-h3{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(1.6rem,3vw,2.4rem);font-weight:800;
+  color:var(--cream);letter-spacing:-0.02em;line-height:1.2;
+  margin-bottom:0.75rem;
+}
 .cta-sub{font-size:0.88rem;color:var(--cream-dim);max-width:28rem}
 .cta-right{flex-shrink:0}
 
@@ -325,9 +332,7 @@ footer{
   display:flex;align-items:center;justify-content:space-between;
   flex-wrap:wrap;gap:1.5rem;
 }
-.footer-brand{
-  font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;color:var(--gold);
-}
+.footer-brand{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;color:var(--gold)}
 .footer-links{display:flex;gap:1.5rem;flex-wrap:wrap}
 .footer-links a{font-size:0.78rem;color:var(--cream-dim);transition:color .2s}
 .footer-links a:hover{color:var(--gold)}
@@ -360,9 +365,11 @@ footer{
   flex-shrink:0;
 }
 .btn-x:hover{color:var(--cream);border-color:var(--cream-dim)}
+
+/* MODAL FIELDS */
 .field{margin-bottom:1.1rem}
 .field label{display:block;font-size:0.72rem;font-weight:600;color:var(--cream-dim);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:0.4rem}
-.field input,.field textarea{
+.field input, .field textarea{
   width:100%;padding:0.8rem 1rem;
   background:rgba(15,17,23,0.8);border:1.5px solid rgba(200,169,110,0.2);
   border-radius:0.6rem;color:var(--cream);font-family:inherit;font-size:0.88rem;
@@ -370,6 +377,7 @@ footer{
 }
 .field input:focus,.field textarea:focus{border-color:var(--gold)}
 .field input::placeholder,.field textarea::placeholder{color:rgba(176,170,158,0.45)}
+
 .btn-send{
   width:100%;padding:0.9rem;border-radius:var(--r-pill);
   background:var(--gold);color:#0f1117;font-size:0.9rem;font-weight:700;
@@ -382,9 +390,19 @@ footer{
 .success-h{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:800;color:var(--cream);margin-bottom:0.5rem}
 .success-p{font-size:0.85rem;color:var(--cream-dim)}
 
-/* Сообщение об ошибке, если скрипт не сработал */
-#modal-error{display:none;text-align:center;padding:2rem 0}
-.error-mark{font-size:2.5rem;color:#ef4444;margin-bottom:1rem}
+/* ANIMATIONS */
+@keyframes fadeUp{
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.reveal{opacity:0;transform:translateY(2rem);transition:opacity .65s ease,transform .65s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
 </style>
 </head>
 <body>
@@ -408,21 +426,21 @@ footer{
 <!-- HERO -->
 <section id="hero">
   <div class="hero-img-col">
-    <img id="hero-photo" src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=cover&q=80&w=1200" alt="Юрист по банкротству"/>
+    <img id="hero-photo" src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=cover&q=80&w=1200" alt="Юридическая помощь при задолженностях"/>
   </div>
   <div class="hero-text-col">
     <div class="hero-eyebrow">
       <span class="eyebrow-dot"></span>
-      Юридический центр · Мы по всей стране[cite: 1]
+      Юридический Центр · По всей России
     </div>
     <h1 class="hero-h1">
       Списываем долги<br>и <em>освобождаем</em><br>от банкротства
     </h1>
     <p class="hero-sub">
-      Профессиональная юридическая помощь при задолженностях по кредитам, займам и налогам. Работаем по всей России![cite: 1]
+      Профессиональная юридическая помощь при задолженностях по кредитам, займам и налогам. Дистанционная работа по всей стране.
     </p>
     <div class="hero-actions">
-      <button class="btn-primary" onclick="openModal()">Получить консультацию[cite: 1]</button>
+      <button class="btn-primary" onclick="openModal()">Получить консультацию</button>
       <button class="btn-secondary" onclick="openModal()">Оставить заявку</button>
     </div>
     <div class="hero-trust">
@@ -517,7 +535,7 @@ footer{
           <div class="why-check">✓</div>
           <div>
             <div class="why-item-title">Сопровождение «под ключ»</div>
-            <div class="why-item-desc">Берём на себя всё: документы, суд, переговоры, общение с кредиторами. Вам остаётся только ждать решения.</div>
+            <div class="why-item-desc">Берём на себя всё: документы, суд, общение с кредиторами. Вам остаётся только ждать решения.</div>
           </div>
         </div>
       </div>
@@ -650,7 +668,7 @@ footer{
       <p class="cta-sub">Первая консультация — бесплатно. Объясним, как списать долги именно в вашем случае.</p>
     </div>
     <div class="cta-right">
-      <button class="btn-primary" onclick="openModal()">Получить консультацию[cite: 1]</button>
+      <button class="btn-primary" onclick="openModal()">Оставить заявку</button>
     </div>
   </div>
 </section>
@@ -666,9 +684,9 @@ footer{
     <a href="#" onclick="openModal();return false;">Консультация</a>
   </div>
   <div class="footer-legal">
-    © 2026 Долговой Центр. Все права защищены. · Россия · 
+    © 2026 Долговой Центр. Все права защищены. · 
     Оказание юридических услуг в соответствии с ФЗ № 127-ФЗ «О несостоятельности (банкротстве)». 
-    Результат зависит от конкретных обстоятельств дела.[cite: 1]
+    Результат зависит от конкретных обстоятельств дела.
   </div>
 </footer>
 
@@ -682,124 +700,97 @@ footer{
       </div>
       <button class="btn-x" onclick="closeModal()">✕</button>
     </div>
-    
-    <!-- Форма отправки -->
-    <form id="modal-form" onsubmit="submitForm(event)">
+    <div id="modal-form">
       <div class="field">
-        <label for="user-name">Ваше имя *</label>
-        <input type="text" id="user-name" placeholder="Иван Иванов" required/>
+        <label>Ваше имя</label>
+        <input type="text" id="form-name" placeholder="Иван Иванов"/>
       </div>
       <div class="field">
-        <label for="user-phone">Номер телефона *</label>
-        <input type="tel" id="user-phone" placeholder="+7 (999) 000-00-00" required/>
+        <label>Номер телефона</label>
+        <input type="tel" id="form-phone" placeholder="+7 (___) ___-__-__"/>
       </div>
       <div class="field">
-        <label for="user-debt">Размер долга (примерно)</label>
-        <input type="text" id="user-debt" placeholder="например, 500 000 ₽"/>
+        <label>Размер долга (примерно)</label>
+        <input type="text" id="form-debt" placeholder="например, 500 000 ₽"/>
       </div>
       <div class="field">
-        <label for="user-comment">Комментарий (необязательно)</label>
-        <textarea id="user-comment" placeholder="Опишите вашу ситуацию..." style="height:5rem"></textarea>
+        <label>Комментарий (необязательно)</label>
+        <textarea id="form-comment" placeholder="Опишите вашу ситуацию..." style="height:5rem"></textarea>
       </div>
-      <button type="submit" class="btn-send" id="btn-send">Отправить заявку</button>
-    </form>
-    
-    <!-- Окно Успеха -->
+      <button class="btn-send" id="btn-send" onclick="submitForm()">Отправить заявку</button>
+    </div>
     <div id="modal-success">
       <div class="success-mark">✦</div>
       <div class="success-h">Заявка принята</div>
-      <p class="success-p">Данные успешно сохранены.<br>Наш специалист свяжется с вами в ближайшее время.</p>
-    </div>
-
-    <!-- Окно Ошибки -->
-    <div id="modal-error">
-      <div class="error-mark">✕</div>
-      <div class="success-h" style="color:#ef4444">Ошибка отправки</div>
-      <p class="success-p">Не удалось отправить данные. Пожалуйста, попробуйте позже или проверьте подключение.</p>
+      <p class="success-p">Данные успешно сохранены.<br>Мы свяжемся с вами в ближайшее время.</p>
     </div>
   </div>
 </div>
 
 <script>
-// ВСТАВЬ СВОЙ URL ВЕБ-ПРИЛОЖЕНИЯ GOOGLE APPS SCRIPT МЕЖДУ КАВЫЧКАМИ:
-const GOOGLE_SCRIPT_URL = "КОНСТАНТА_URL_СКРИПТА";
+// ВСТАВЬ СЮДА СВОЙ URL ВЕБ-ПРИЛОЖЕНИЯ GOOGLE APPS СЛЕДУЮЩИМ КАВЫЧКАМ:
+const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwqk2MAWm5uqiGqZ40oLqnD5M2A7plqxXrTNRlcgYwHUiUATPzvJVsDnm4rVWJto_ijGA/exec";
 
-// Modal управления окнами
-function openModal(){ 
-  document.getElementById('modal').classList.add('open'); 
-  document.body.style.overflow='hidden'; 
-}
-
+// Modal
+function openModal(){ document.getElementById('modal').classList.add('open'); document.body.style.overflow='hidden'; }
 function closeModal(){
   document.getElementById('modal').classList.remove('open');
   document.body.style.overflow='';
   setTimeout(()=>{
     document.getElementById('modal-form').style.display='';
     document.getElementById('modal-success').style.display='none';
-    document.getElementById('modal-error').style.display='none';
     document.getElementById('btn-send').textContent='Отправить заявку';
-    document.getElementById('btn-send').disabled = false;
-  }, 400);
+    document.getElementById('btn-send').disabled=false;
+    document.getElementById('form-name').value = '';
+    document.getElementById('form-phone').value = '';
+    document.getElementById('form-debt').value = '';
+    document.getElementById('form-comment').value = '';
+  },400);
 }
+document.getElementById('modal').addEventListener('click',e=>{ if(e.target===e.currentTarget) closeModal(); });
 
-document.getElementById('modal').addEventListener('click', e => { 
-  if(e.target === e.currentTarget) closeModal(); 
-});
+// Отправка данных в Google Таблицу
+function submitForm(){
+  const nameInput = document.getElementById('form-name').value.trim();
+  const phoneInput = document.getElementById('form-phone').value.trim();
+  const debtInput = document.getElementById('form-debt').value.trim();
+  const commentInput = document.getElementById('form-comment').value.trim();
 
-// Асинхронная отправка данных в Google Таблицу
-function submitForm(event) {
-  event.preventDefault(); // Стопаем стандартную перезагрузку страницы
-  
-  const btn = document.getElementById('btn-send');
-  const form = document.getElementById('modal-form');
-  const successBox = document.getElementById('modal-success');
-  const errorBox = document.getElementById('modal-error');
-  
-  btn.textContent = 'Отправка...';
-  btn.disabled = true;
-
-  // Собираем данные из полей
-  const formData = {
-    name: document.getElementById('user-name').value,
-    phone: document.getElementById('user-phone').value,
-    debt: document.getElementById('user-debt').value,
-    comment: document.getElementById('user-comment').value
-  };
-
-  // Проверяем, вставил ли пользователь ссылку
-  if (GOOGLE_SCRIPT_URL === "https://script.google.com/macros/s/AKfycbwqk2MAWm5uqiGqZ40oLqnD5M2A7plqxXrTNRlcgYwHUiUATPzvJVsDnm4rVWJto_ijGA/exec") {
-    alert("Пожалуйста, настройте скрипт Google Apps Script и добавьте его URL в код сайта.");
-    btn.textContent = 'Отправить заявку';
-    btn.disabled = false;
+  if(!nameInput || !phoneInput){
+    alert('Пожалуйста, заполните поля "Ваше имя" и "Номер телефона"');
     return;
   }
 
-  // Отправляем POST запрос в Google Sheets
+  const btn=document.getElementById('btn-send');
+  btn.textContent='Отправляем...'; btn.disabled=true;
+
+  const payload = {
+    name: nameInput,
+    phone: phoneInput,
+    debt: debtInput,
+    comment: commentInput
+  };
+
   fetch(GOOGLE_SCRIPT_URL, {
     method: 'POST',
-    mode: 'no-cors', // Позволяет отправлять запросы без настройки CORS со стороны Google
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(formData)
+    mode: 'no-cors',
+    cache: 'no-cache',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(payload)
   })
   .then(() => {
-    // Так как используется режим 'no-cors', мы не получим статус ответа, 
-    // но если промис выполнился успешно — данные ушли
-    form.style.display = 'none';
-    successBox.style.display = 'block';
-    form.reset(); // Очищаем форму
+    document.getElementById('modal-form').style.display='none';
+    document.getElementById('modal-success').style.display='block';
   })
   .catch(error => {
-    console.error('Ошибка:', error);
-    form.style.display = 'none';
-    errorBox.style.display = 'block';
-    btn.textContent = 'Отправить заявку';
-    btn.disabled = false;
+    console.error('Ошибка отправки:', error);
+    alert('Произошла ошибка при отправке. Пожалуйста, попробуйте еще раз.');
+    btn.textContent='Отправить заявку';
+    btn.disabled=false;
   });
 }
 
-// FAQ Аккордеон
+// FAQ
 function toggleFaq(btn){
   const item=btn.closest('.faq-item');
   const wasOpen=item.classList.contains('open');
@@ -807,7 +798,7 @@ function toggleFaq(btn){
   if(!wasOpen) item.classList.add('open');
 }
 
-// Scroll анимации появления
+// Scroll reveals
 const obs=new IntersectionObserver(entries=>{
   entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('visible'); obs.unobserve(e.target); } });
 },{threshold:0.12});
