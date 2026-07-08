@@ -229,18 +229,59 @@ nav{
 
 /* WHY US */
 #why{padding:6rem 5%;background:var(--surface)}
-.why-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center}
+.why-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:stretch}
 @media(max-width:768px){.why-grid{grid-template-columns:1fr;gap:2.5rem}}
-.why-img{border-radius:var(--r-card);overflow:hidden;position:relative}
-.why-img img{width:100%;height:28rem;object-fit:cover;object-position:top center;filter:grayscale(20%)}
-@media(max-width:768px){.why-img img{height:20rem}}
-.why-img-badge{
-  position:absolute;bottom:1.5rem;left:1.5rem;
-  background:var(--gold);color:#0f1117;
-  border-radius:var(--r-pill);padding:0.65rem 1.2rem;
-  font-size:0.78rem;font-weight:700;display:flex;align-items:center;gap:0.4rem;
+
+.why-img{
+  border-radius:var(--r-card);
+  overflow:hidden;
+  position:relative;
+  display:flex;
+  min-height:28rem;
+  border:1px solid var(--line);
 }
-.why-list{display:flex;flex-direction:column;gap:1.2rem}
+@media(max-width:768px){.why-img{min-height:20rem}}
+
+.why-img img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:top center;
+  filter:grayscale(15%) brightness(0.75);
+}
+
+.why-img-badge{
+  position:absolute;
+  bottom:1.5rem;
+  left:1.5rem;
+  right:1.5rem;
+  background:rgba(24, 28, 38, 0.85);
+  backdrop-filter:blur(8px);
+  -webkit-backdrop-filter:blur(8px);
+  border:1px solid var(--line);
+  color:var(--cream);
+  border-radius:0.75rem;
+  padding:1rem 1.25rem;
+  display:flex;
+  flex-direction:column;
+  gap:0.35rem;
+}
+.why-badge-title {
+  font-size:0.85rem;
+  font-weight:700;
+  color:var(--gold);
+  display:flex;
+  align-items:center;
+  gap:0.4rem;
+}
+.why-badge-text {
+  font-size:0.75rem;
+  color:var(--cream-dim);
+  text-transform:uppercase;
+  letter-spacing:0.05em;
+}
+
+.why-list{display:flex;flex-direction:column;gap:1.2rem;justify-content:center}
 .why-item{
   display:flex;align-items:flex-start;gap:1rem;
   padding:1.2rem 1.5rem;
@@ -420,7 +461,6 @@ footer{
 </head>
 <body>
 
-<!-- NAV -->
 <nav>
   <div class="nav-logo">
     <div class="nav-logo-mark">Д</div>
@@ -436,7 +476,6 @@ footer{
   <button class="nav-cta" onclick="openModal()">Бесплатная консультация</button>
 </nav>
 
-<!-- HERO -->
 <section id="hero">
   <div class="hero-img-col">
     <img id="hero-photo" src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=cover&q=80&w=1200" alt="Юридическая помощь при задолженностях"/>
@@ -475,7 +514,6 @@ footer{
 
 <div class="section-divider"></div>
 
-<!-- HOW IT WORKS -->
 <section id="how">
   <div class="section-pre">Процесс</div>
   <h2 class="section-h2 reveal">Четыре шага к жизни без долгов</h2>
@@ -509,14 +547,16 @@ footer{
 
 <div class="section-divider"></div>
 
-<!-- WHY US -->
 <section id="why">
   <div class="why-grid">
     <div class="why-img reveal">
       <img id="why-photo" src="https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=cover&q=80&w=1200" alt="Опытный юрист"/>
       <div class="why-img-badge">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-        Лицензированные юристы
+        <div class="why-badge-title">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          Лицензированные юристы
+        </div>
+        <div class="why-badge-text">Наши юристы — защита и результат</div>
       </div>
     </div>
     <div>
@@ -558,7 +598,6 @@ footer{
 
 <div class="section-divider"></div>
 
-<!-- SERVICES -->
 <section id="services">
   <div class="section-pre">Услуги</div>
   <h2 class="section-h2 reveal">Чем мы помогаем</h2>
@@ -598,7 +637,6 @@ footer{
 
 <div class="section-divider"></div>
 
-<!-- REVIEWS -->
 <section id="reviews">
   <div class="section-pre">Отзывы</div>
   <h2 class="section-h2 reveal">Клиенты о нас</h2>
@@ -630,7 +668,6 @@ footer{
   </div>
 </section>
 
-<!-- FAQ -->
 <section id="faq">
   <div class="section-pre">Вопросы и ответы</div>
   <h2 class="section-h2 reveal">Часто спрашивают</h2>
@@ -673,7 +710,6 @@ footer{
   </div>
 </section>
 
-<!-- CTA BANNER -->
 <section id="cta">
   <div class="cta-card reveal">
     <div class="cta-left">
@@ -686,7 +722,6 @@ footer{
   </div>
 </section>
 
-<!-- FOOTER -->
 <footer>
   <div class="footer-brand">Долговой Центр</div>
   <div class="footer-links">
@@ -703,7 +738,6 @@ footer{
   </div>
 </footer>
 
-<!-- MODAL -->
 <div id="modal">
   <div class="modal-box">
     <div class="modal-top">
