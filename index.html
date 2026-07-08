@@ -75,12 +75,24 @@ nav{
   display:grid;grid-template-columns:1fr 1fr;
   overflow:hidden;
 }
-@media(max-width:768px){#hero{grid-template-columns:1fr;min-height:auto}}
+@media(max-width:768px){
+  #hero{
+    grid-template-columns:1fr;
+    min-height:auto;
+    display:flex;
+    flex-direction:column-reverse;
+  }
+}
 
 .hero-img-col{
   position:relative;overflow:hidden;
 }
-@media(max-width:768px){.hero-img-col{height:60svh}}
+@media(max-width:768px){
+  .hero-img-col{
+    height:45vh;
+    width:100%;
+  }
+}
 .hero-img-col img{
   width:100%;height:100%;object-fit:cover;object-position:center top;
   display:block;filter:brightness(0.88);
@@ -95,7 +107,7 @@ nav{
   display:flex;flex-direction:column;justify-content:center;
   padding:8rem 6% 4rem;background:var(--ink);position:relative;
 }
-@media(max-width:768px){.hero-text-col{padding:3rem 6% 4rem}}
+@media(max-width:768px){.hero-text-col{padding:7rem 6% 4rem}}
 
 .hero-text-col::before{
   content:'';position:absolute;inset:0;
@@ -221,6 +233,7 @@ nav{
 @media(max-width:768px){.why-grid{grid-template-columns:1fr;gap:2.5rem}}
 .why-img{border-radius:var(--r-card);overflow:hidden;position:relative}
 .why-img img{width:100%;height:28rem;object-fit:cover;object-position:top center;filter:grayscale(20%)}
+@media(max-width:768px){.why-img img{height:20rem}}
 .why-img-badge{
   position:absolute;bottom:1.5rem;left:1.5rem;
   background:var(--gold);color:#0f1117;
@@ -728,7 +741,6 @@ footer{
 </div>
 
 <script>
-// ВСТАВЬ СЮДА СВОЙ URL ВЕБ-ПРИЛОЖЕНИЯ GOOGLE APPS СЛЕДУЮЩИМ КАВЫЧКАМ:
 const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwqk2MAWm5uqiGqZ40oLqnD5M2A7plqxXrTNRlcgYwHUiUATPzvJVsDnm4rVWJto_ijGA/exec";
 
 // Modal
@@ -764,19 +776,19 @@ function submitForm(){
   const btn=document.getElementById('btn-send');
   btn.textContent='Отправляем...'; btn.disabled=true;
 
-  const payload = {
-    name: nameInput,
-    phone: phoneInput,
-    debt: debtInput,
-    comment: commentInput
-  };
+  // Формируем URLSearchParams вместо обычного JSON
+  const params = new URLSearchParams();
+  params.append('name', nameInput);
+  params.append('phone', phoneInput);
+  params.append('debt', debtInput);
+  params.append('comment', commentInput);
 
   fetch(GOOGLE_SCRIPT_URL, {
     method: 'POST',
     mode: 'no-cors',
     cache: 'no-cache',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(payload)
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    body: params.toString()
   })
   .then(() => {
     document.getElementById('modal-form').style.display='none';
