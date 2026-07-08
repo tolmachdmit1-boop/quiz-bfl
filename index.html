@@ -1,12 +1,11 @@
-cat > /mnt/user-data/outputs/dolgi-ekb.html << 'HTMLEOF'
 <!DOCTYPE html>
 <html lang="ru">
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <meta name="theme-color" content="#0f1117"/>
-<meta name="description" content="Юридический центр по списанию долгов и банкротству физических лиц в Екатеринбурге. Бесплатная консультация. Гарантия результата."/>
-<title>Долговой Центр — Банкротство в Екатеринбурге</title>
+<meta name="description" content="Юридический中心 по списанию долгов и банкротству физических лиц. Бесплатная консультация. Гарантия результата."/>
+<title>Долговой Центр — Банкротство физических лиц</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
@@ -86,7 +85,6 @@ nav{
   width:100%;height:100%;object-fit:cover;object-position:center top;
   display:block;filter:brightness(0.88);
 }
-/* Vertical gold rule between columns */
 .hero-img-col::after{
   content:'';position:absolute;top:0;right:0;bottom:0;width:1px;
   background:linear-gradient(to bottom,transparent,var(--gold) 30%,var(--gold) 70%,transparent);
@@ -99,7 +97,6 @@ nav{
 }
 @media(max-width:768px){.hero-text-col{padding:3rem 6% 4rem}}
 
-/* Subtle texture lines */
 .hero-text-col::before{
   content:'';position:absolute;inset:0;
   background-image:repeating-linear-gradient(
@@ -129,13 +126,12 @@ nav{
   font-style:normal;color:var(--gold);
   position:relative;display:inline-block;
 }
-/* Underline accent */
 .hero-h1 em::after{
   content:'';position:absolute;left:0;bottom:-2px;right:0;height:2px;
   background:linear-gradient(90deg,var(--gold),transparent);
 }
 
-.hero-sub">
+.hero-sub{
   font-size:1rem;line-height:1.7;color:var(--cream-dim);
   max-width:28rem;margin-bottom:2.5rem;
   opacity:0;animation:fadeUp .8s ease .7s forwards;
@@ -319,22 +315,8 @@ nav{
   color:rgba(200,169,110,0.04);letter-spacing:-0.05em;
   pointer-events:none;white-space:nowrap;line-height:1;
 }
-.cta-left{}
-.cta-h3{
-  font-family:'Playfair Display',serif;
-  font-size:clamp(1.6rem,3vw,2.4rem);font-weight:800;
-  color:var(--cream);letter-spacing:-0.02em;line-height:1.2;
-  margin-bottom:0.75rem;
-}
 .cta-sub{font-size:0.88rem;color:var(--cream-dim);max-width:28rem}
 .cta-right{flex-shrink:0}
-.cta-phone{
-  font-family:'Playfair Display',serif;
-  font-size:1.6rem;font-weight:800;color:var(--gold);
-  display:block;margin-bottom:0.5rem;transition:color .2s;
-}
-.cta-phone:hover{color:var(--gold-light)}
-.cta-note{font-size:0.72rem;color:var(--cream-dim);text-align:center}
 
 /* FOOTER */
 footer{
@@ -400,13 +382,9 @@ footer{
 .success-h{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:800;color:var(--cream);margin-bottom:0.5rem}
 .success-p{font-size:0.85rem;color:var(--cream-dim)}
 
-/* ANIMATIONS */
-@keyframes fadeUp{
-  from{opacity:0;transform:translateY(1.2rem)}
-  to{opacity:1;transform:translateY(0)}
-}
-.reveal{opacity:0;transform:translateY(2rem);transition:opacity .65s ease,transform .65s ease}
-.reveal.visible{opacity:1;transform:translateY(0)}
+/* Сообщение об ошибке, если скрипт не сработал */
+#modal-error{display:none;text-align:center;padding:2rem 0}
+.error-mark{font-size:2.5rem;color:#ef4444;margin-bottom:1rem}
 </style>
 </head>
 <body>
@@ -430,24 +408,21 @@ footer{
 <!-- HERO -->
 <section id="hero">
   <div class="hero-img-col">
-    <img id="hero-photo" src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=cover&q=80&w=1200" alt="Юрист по банкротству Екатеринбург"/>
+    <img id="hero-photo" src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=cover&q=80&w=1200" alt="Юрист по банкротству"/>
   </div>
   <div class="hero-text-col">
     <div class="hero-eyebrow">
       <span class="eyebrow-dot"></span>
-      Юридический中心 · Екатеринбург
+      Юридический центр · Мы по всей стране[cite: 1]
     </div>
     <h1 class="hero-h1">
       Списываем долги<br>и <em>освобождаем</em><br>от банкротства
     </h1>
     <p class="hero-sub">
-      Профессиональная юридическая помощь при задолженностях по кредитам, займам и налогам. Работаем по всей Свердловской области.
+      Профессиональная юридическая помощь при задолженностях по кредитам, займам и налогам. Работаем по всей России![cite: 1]
     </p>
     <div class="hero-actions">
-      <button class="btn-primary" onclick="openModal()">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.5 10.8a19.79 19.79 0 01-3.07-8.67A2 2 0 012.41 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.91a16 16 0 006.18 6.18l1.27-.76a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
-        Позвонить сейчас
-      </button>
+      <button class="btn-primary" onclick="openModal()">Получить консультацию[cite: 1]</button>
       <button class="btn-secondary" onclick="openModal()">Оставить заявку</button>
     </div>
     <div class="hero-trust">
@@ -457,7 +432,7 @@ footer{
       </div>
       <div class="trust-item">
         <div class="trust-num">12 лет</div>
-        <div class="trust-label">На рынке<br>Урала</div>
+        <div class="trust-label">На рынке</div>
       </div>
       <div class="trust-item">
         <div class="trust-num">97%</div>
@@ -542,7 +517,7 @@ footer{
           <div class="why-check">✓</div>
           <div>
             <div class="why-item-title">Сопровождение «под ключ»</div>
-            <div class="why-item-desc">Берём на себя всё: документы, суд, openModal, общение с кредиторами. Вам остаётся только ждать решения.</div>
+            <div class="why-item-desc">Берём на себя всё: документы, суд, переговоры, общение с кредиторами. Вам остаётся только ждать решения.</div>
           </div>
         </div>
       </div>
@@ -675,15 +650,14 @@ footer{
       <p class="cta-sub">Первая консультация — бесплатно. Объясним, как списать долги именно в вашем случае.</p>
     </div>
     <div class="cta-right">
-      <a href="tel:+73432000000" class="cta-phone">+7 (343) 200-00-00</a>
-      <div class="cta-note">Звоните с 9:00 до 20:00 · Без выходных</div>
+      <button class="btn-primary" onclick="openModal()">Получить консультацию[cite: 1]</button>
     </div>
   </div>
 </section>
 
 <!-- FOOTER -->
 <footer>
-  <div class="footer-brand">Долговой Центр · Екатеринбург</div>
+  <div class="footer-brand">Долговой Центр</div>
   <div class="footer-links">
     <a href="#how">Как работаем</a>
     <a href="#services">Услуги</a>
@@ -692,9 +666,9 @@ footer{
     <a href="#" onclick="openModal();return false;">Консультация</a>
   </div>
   <div class="footer-legal">
-    © 2025 Долговой Центр. Все права защищены. · г. Екатеринбург, ул. Малышева, 51 · 
+    © 2026 Долговой Центр. Все права защищены. · Россия · 
     Оказание юридических услуг в соответствии с ФЗ № 127-ФЗ «О несостоятельности (банкротстве)». 
-    Результат зависит от конкретных обстоятельств дела.
+    Результат зависит от конкретных обстоятельств дела.[cite: 1]
   </div>
 </footer>
 
@@ -708,91 +682,124 @@ footer{
       </div>
       <button class="btn-x" onclick="closeModal()">✕</button>
     </div>
-    <div id="modal-form">
+    
+    <!-- Форма отправки -->
+    <form id="modal-form" onsubmit="submitForm(event)">
       <div class="field">
-        <label>Ваше имя</label>
-        <input type="text" placeholder="Иван Иванов"/>
+        <label for="user-name">Ваше имя *</label>
+        <input type="text" id="user-name" placeholder="Иван Иванов" required/>
       </div>
       <div class="field">
-        <label>Номер телефона</label>
-        <input type="tel" placeholder="+7 (___) ___-__-__"/>
+        <label for="user-phone">Номер телефона *</label>
+        <input type="tel" id="user-phone" placeholder="+7 (999) 000-00-00" required/>
       </div>
       <div class="field">
-        <label>Размер долга (примерно)</label>
-        <input type="text" placeholder="например, 500 000 ₽"/>
+        <label for="user-debt">Размер долга (примерно)</label>
+        <input type="text" id="user-debt" placeholder="например, 500 000 ₽"/>
       </div>
       <div class="field">
-        <label>Комментарий (необязательно)</label>
-        <textarea placeholder="Опишите вашу ситуацию..." style="height:5rem"></textarea>
+        <label for="user-comment">Комментарий (необязательно)</label>
+        <textarea id="user-comment" placeholder="Опишите вашу ситуацию..." style="height:5rem"></textarea>
       </div>
-      <button class="btn-send" id="btn-send" onclick="submitForm()">Отправить заявку</button>
-    </div>
+      <button type="submit" class="btn-send" id="btn-send">Отправить заявку</button>
+    </form>
+    
+    <!-- Окно Успеха -->
     <div id="modal-success">
       <div class="success-mark">✦</div>
       <div class="success-h">Заявка принята</div>
-      <p class="success-p">Наш специалист свяжется с вами<br>в течение 30 минут.</p>
+      <p class="success-p">Данные успешно сохранены.<br>Наш специалист свяжется с вами в ближайшее время.</p>
+    </div>
+
+    <!-- Окно Ошибки -->
+    <div id="modal-error">
+      <div class="error-mark">✕</div>
+      <div class="success-h" style="color:#ef4444">Ошибка отправки</div>
+      <p class="success-p">Не удалось отправить данные. Пожалуйста, попробуйте позже или проверьте подключение.</p>
     </div>
   </div>
 </div>
 
 <script>
-// Modal
-function openModal(){ document.getElementById('modal').classList.add('open'); document.body.style.overflow='hidden'; }
+// ВСТАВЬ СВОЙ URL ВЕБ-ПРИЛОЖЕНИЯ GOOGLE APPS SCRIPT МЕЖДУ КАВЫЧКАМИ:
+const GOOGLE_SCRIPT_URL = "КОНСТАНТА_URL_СКРИПТА";
+
+// Modal управления окнами
+function openModal(){ 
+  document.getElementById('modal').classList.add('open'); 
+  document.body.style.overflow='hidden'; 
+}
+
 function closeModal(){
   document.getElementById('modal').classList.remove('open');
   document.body.style.overflow='';
   setTimeout(()=>{
     document.getElementById('modal-form').style.display='';
     document.getElementById('modal-success').style.display='none';
+    document.getElementById('modal-error').style.display='none';
     document.getElementById('btn-send').textContent='Отправить заявку';
-    document.getElementById('btn-send').disabled=false;
-  },400);
+    document.getElementById('btn-send').disabled = false;
+  }, 400);
 }
-document.getElementById('modal').addEventListener('click',e=>{ if(e.target===e.currentTarget) closeModal(); });
-async function submitForm() {
-  const btn = document.getElementById('btn-send');
-  
-  // Собираем данные из полей
-  const name = document.querySelector('input[placeholder="Иван Иванов"]').value.trim();
-  const phone = document.querySelector('input[placeholder="+7 (___) ___-__-__"]').value.trim();
-  const debt = document.querySelector('input[placeholder="например, 500 000 ₽"]').value.trim();
-  const comment = document.querySelector('textarea').value.trim();
 
-  if (!phone) {
-    alert('Пожалуйста, укажите номер телефона чтобы мы могли связаться с вами.');
+document.getElementById('modal').addEventListener('click', e => { 
+  if(e.target === e.currentTarget) closeModal(); 
+});
+
+// Асинхронная отправка данных в Google Таблицу
+function submitForm(event) {
+  event.preventDefault(); // Стопаем стандартную перезагрузку страницы
+  
+  const btn = document.getElementById('btn-send');
+  const form = document.getElementById('modal-form');
+  const successBox = document.getElementById('modal-success');
+  const errorBox = document.getElementById('modal-error');
+  
+  btn.textContent = 'Отправка...';
+  btn.disabled = true;
+
+  // Собираем данные из полей
+  const formData = {
+    name: document.getElementById('user-name').value,
+    phone: document.getElementById('user-phone').value,
+    debt: document.getElementById('user-debt').value,
+    comment: document.getElementById('user-comment').value
+  };
+
+  // Проверяем, вставил ли пользователь ссылку
+  if (GOOGLE_SCRIPT_URL === "https://script.google.com/macros/s/AKfycbwqk2MAWm5uqiGqZ40oLqnD5M2A7plqxXrTNRlcgYwHUiUATPzvJVsDnm4rVWJto_ijGA/exec") {
+    alert("Пожалуйста, настройте скрипт Google Apps Script и добавьте его URL в код сайта.");
+    btn.textContent = 'Отправить заявку';
+    btn.disabled = false;
     return;
   }
 
-  btn.textContent = 'Отправляем...';
-  btn.disabled = true;
-
-  try {
-    // ВСТАВЬ СЮДА IP-АДРЕС СВОЕГО VPS И ПОРТ (например, http://192.168.1.1:8080/api/lead)
-    const response = await fetch('http://89.37.192.2:24865/api/lead', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ name, phone, debt, comment })
-    });
-
-    if (response.ok) {
-      document.getElementById('modal-form').style.display = 'none';
-      document.getElementById('modal-success').style.display = 'block';
-    } else {
-      alert('Произошла ошибка при отправке. Пожалуйста, попробуйте еще раз.');
-      btn.textContent = 'Отправить заявку';
-      btn.disabled = false;
-    }
-  } catch (error) {
-    console.error('Error:', error);
-    alert('Не удалось связаться с сервером. Проверьте подключение.');
+  // Отправляем POST запрос в Google Sheets
+  fetch(GOOGLE_SCRIPT_URL, {
+    method: 'POST',
+    mode: 'no-cors', // Позволяет отправлять запросы без настройки CORS со стороны Google
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(formData)
+  })
+  .then(() => {
+    // Так как используется режим 'no-cors', мы не получим статус ответа, 
+    // но если промис выполнился успешно — данные ушли
+    form.style.display = 'none';
+    successBox.style.display = 'block';
+    form.reset(); // Очищаем форму
+  })
+  .catch(error => {
+    console.error('Ошибка:', error);
+    form.style.display = 'none';
+    errorBox.style.display = 'block';
     btn.textContent = 'Отправить заявку';
     btn.disabled = false;
-  }
+  });
 }
 
-// FAQ
+// FAQ Аккордеон
 function toggleFaq(btn){
   const item=btn.closest('.faq-item');
   const wasOpen=item.classList.contains('open');
@@ -800,7 +807,7 @@ function toggleFaq(btn){
   if(!wasOpen) item.classList.add('open');
 }
 
-// Scroll reveals
+// Scroll анимации появления
 const obs=new IntersectionObserver(entries=>{
   entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('visible'); obs.unobserve(e.target); } });
 },{threshold:0.12});
@@ -808,6 +815,3 @@ document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
 </script>
 </body>
 </html>
-HTMLEOF
-
-echo "Template written and image embedded successfully."
